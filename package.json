@@ -1,0 +1,67 @@
+{
+  "name": "@bwmx/algorand-vrf-utils-ts",
+  "version": "0.1.0",
+  "description": "Algorand-compatible ECVRF (draft-03) for Node.js: proofs accepted by the AVM vrf_verify opcode",
+  "keywords": [
+    "algorand",
+    "draft-03",
+    "ecvrf",
+    "ed25519",
+    "randomness",
+    "vrf",
+    "wasm"
+  ],
+  "homepage": "https://github.com/bwmx/algorand-vrf-utils-ts#readme",
+  "bugs": {
+    "url": "https://github.com/bwmx/algorand-vrf-utils-ts/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bwmx/algorand-vrf-utils-ts.git"
+  },
+  "files": [
+    "dist",
+    "src",
+    "wasm",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build:wasm": "sh go/build.sh",
+    "build": "rm -rf dist && tsc",
+    "check-types": "tsc --noEmit && tsc --noEmit -p test",
+    "prepare": "pnpm run build",
+    "prepublishOnly": "pnpm test",
+    "test": "vitest run --exclude '**/*.e2e.test.ts'",
+    "test:e2e": "vitest run e2e",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint ."
+  },
+  "devDependencies": {
+    "@algorandfoundation/algokit-utils": "^9.1.2",
+    "@types/node": "^24.6.2",
+    "algosdk": "^3.5.2",
+    "oxfmt": "^0.70.0",
+    "oxlint": "^1.85.0",
+    "typescript": "^5.9.3",
+    "vitest": "4.1.11"
+  },
+  "engines": {
+    "node": ">=22.0"
+  },
+  "packageManager": "pnpm@12.6.0+sha512.3ef68f951cb111ac204b4a5a16f0b2ddf0da56a96e0413e81d855d9f0b55ef926714709028e1cd00c405c2c5fb7b9e8ec4dc46777c805d0373c2f2ff00fd20ec"
+}
